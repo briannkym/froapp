@@ -40,8 +40,10 @@ public class QuantityModel {
 		return category.getCategory();
 	}
 
-	public void addCalculation() {
-		calculations.add(new CalculationModel(category, receiving));
+	public CalculationModel addCalculation() {
+		CalculationModel c = new CalculationModel(category, receiving);
+		calculations.add(c);
+		return c;
 	}
 
 	public boolean isPickup(){

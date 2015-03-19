@@ -8,6 +8,7 @@ import java.util.Set;
 public class TripFactory {
 	
 	private Set<CategoryModel> categorySet = new HashSet<CategoryModel>();
+	private CategoryModel misc = CategoryModel.getInstance("Misc.");
 	
 	public TripModel getExampleTrip(){
 		
@@ -15,19 +16,16 @@ public class TripFactory {
 		hyveeCategories.add(CategoryModel.getInstance("Bread"));
 		hyveeCategories.add(CategoryModel.getInstance("Dairy"));
 		hyveeCategories.add(CategoryModel.getInstance("Meat"));
-		hyveeCategories.add(CategoryModel.getInstance("Misc."));
 		union(hyveeCategories);
 		
 		List<CategoryModel> starbucksCategories = new LinkedList<CategoryModel>();
 		starbucksCategories.add(CategoryModel.getInstance("Pastries"));
-		starbucksCategories.add(CategoryModel.getInstance("Misc."));
 		union(starbucksCategories);
 		
 		List<CategoryModel> iowaMUCategories = new LinkedList<CategoryModel>();
 		iowaMUCategories.add(CategoryModel.getInstance("Fish"));
 		iowaMUCategories.add(CategoryModel.getInstance("Bread"));
 		iowaMUCategories.add(CategoryModel.getInstance("Meat"));
-		iowaMUCategories.add(CategoryModel.getInstance("Misc."));
 		union(iowaMUCategories);
 		List<QuantityModel> donations = getDonationList();
 		SiteModel hyvee = new SiteModel("Hyvee", "123 Example st", "Meet Joe in the Bakery, etc.", getReceiveList(hyveeCategories));
@@ -58,6 +56,7 @@ public class TripFactory {
 		for(CategoryModel c : categories){
 			qm.add(new QuantityModel(c, true));
 		}
+		qm.add(new QuantityModel(misc, true));
 		return qm;
 	}
 	
@@ -66,6 +65,7 @@ public class TripFactory {
 		for(CategoryModel c : categorySet){
 			qm.add(new QuantityModel(c, false));
 		}
+		qm.add(new QuantityModel(misc, false));
 		return qm;
 	}
 
@@ -75,6 +75,7 @@ public class TripFactory {
 		for(QuantityModel q : donations){
 			categories.add(q.getCategory());
 		}
+		categories.add(misc);
 		return categories;
 	}
 }

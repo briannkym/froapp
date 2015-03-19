@@ -22,7 +22,7 @@ public class IntroActivity extends ActionBarActivity {
 		// Use this to get intent
 		Intent i = getIntent();
 		final ActionBar actionBar = this.getSupportActionBar();
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.intro_activity);
 		final EditText tripID = (EditText) findViewById(R.id.tripID);
 		final Button load = (Button) findViewById(R.id.load);
 		load.setOnClickListener(new OnClickListener() {

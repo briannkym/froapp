@@ -4,7 +4,6 @@ public class CalculationModel {
 
 	private int pounds = 0;
 	private int quantity = 1;
-	private boolean remainder = false;
 	private boolean receiving = true;
 	private int prevPounds = 0;
 	private int prevQuantity = 1;
@@ -13,7 +12,7 @@ public class CalculationModel {
 	public CalculationModel(CategoryModel category) {
 		this.category = category;
 	}
-	
+
 	public CalculationModel(CategoryModel category, boolean receiving) {
 		this.category = category;
 		this.receiving = receiving;
@@ -27,15 +26,27 @@ public class CalculationModel {
 		this.pounds = Math.abs(pounds);
 	}
 
-	public void setRemainder(boolean remainder) {
-		this.remainder = remainder;
-		update();
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public int getPounds() {
+		return pounds;
+	}
+
+	public boolean remainder() {
+		if (!receiving) {
+			this.quantity = 1;
+			this.pounds = category.getPounds();
+			return update();
+		}
+		return false;
 	}
 
 	public boolean update() {
 		int total = getTotal();
 		int change = total - prevPounds * prevQuantity;
-		if (receiving){
+		if (!receiving) {
 			change = -change;
 		}
 		if (category.addRelative(change)) {
@@ -46,16 +57,10 @@ public class CalculationModel {
 			this.quantity = prevQuantity;
 			return false;
 		}
-
 		return true;
 	}
 
 	public int getTotal() {
-		if (remainder) {
-			if (!receiving) {
-				return category.getPounds();
-			}
-		}
 		return quantity * pounds;
 	}
 }

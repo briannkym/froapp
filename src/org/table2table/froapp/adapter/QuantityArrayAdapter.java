@@ -55,7 +55,13 @@ public class QuantityArrayAdapter extends ArrayAdapter<QuantityModel> {
 			vh = (ViewHolder) convertView.getTag();
 		}
 		vh.foodType.setText(quantities.get(position).getCategoryName());
-		vh.foodQuantity.setText("" + quantities.get(position).getSubtotal());
+		if(!quantities.get(position).isPickup() && quantities.get(position).getSubtotal()== 0){
+			vh.foodQuantity.setText("");
+			vh.foodQuantity.setHint("+" + quantities.get(position).getCategory().getPounds());
+		} else {
+			vh.foodQuantity.setText("" + quantities.get(position).getSubtotal());
+		}
+		
 		vh.foodQuantity.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {

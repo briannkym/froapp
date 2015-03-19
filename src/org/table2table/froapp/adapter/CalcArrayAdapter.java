@@ -1,9 +1,10 @@
 package org.table2table.froapp.adapter;
 
-import java.util.List;
-
 import org.table2table.froapp.R;
+import org.table2table.froapp.model.CalculationModel;
+import org.table2table.froapp.model.QuantityModel;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,19 +15,20 @@ import android.widget.ImageButton;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 
-public class CalcArrayAdapter extends ArrayAdapter<String> {
+public class CalcArrayAdapter extends ArrayAdapter<CalculationModel> {
 	private Context context;
-	private List<String> volunteers;
+	private QuantityModel q;
 
 	static class ViewHolder {
-		EditText volunteer;
+		EditText quantity;
+		EditText pounds;
 		ImageButton delete;
 	}
 
-	public CalcArrayAdapter(Context context, List<String> volunteers) {
-		super(context, R.layout.volunteer, volunteers);
+	public CalcArrayAdapter(Context context, QuantityModel q) {
+		super(context, R.layout.volunteer, q.getCalculations());
 		this.context = context;
-		this.volunteers = volunteers;
+		this.q = q;
 	}
 
 	@Override
@@ -35,36 +37,77 @@ public class CalcArrayAdapter extends ArrayAdapter<String> {
 		if (convertView == null) {
 			LayoutInflater li = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			convertView = li.inflate(R.layout.volunteer, parent, false);
+			convertView = li.inflate(R.layout.calc_row, parent, false);
 
 			vh = new ViewHolder();
-			vh.volunteer = (EditText) convertView.findViewById(R.id.volunteer);
+			vh.quantity = (EditText) convertView.findViewById(R.id.quantity);
+			vh.pounds = (EditText) convertView.findViewById(R.id.pounds);
 			vh.delete = (ImageButton) convertView.findViewById(R.id.delete);
 			convertView.setTag(vh);
 		} else {
 			vh = (ViewHolder) convertView.getTag();
 		}
-		vh.volunteer.setText(volunteers.get(position));
-		vh.volunteer.setOnFocusChangeListener(new OnFocusChangeListener() {
-
+		vh.quantity.setFocusable(true);
+		vh.pounds.setFocusable(true);
+		vh.quantity.setText(q.getCalculations().get(position).getQuantity()
+				+ "");
+		vh.pounds.setText(q.getCalculations().get(position).getPounds() + "");
+		
+		vh.quantity.setOnFocusChangeListener(new OnFocusChangeListener() {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				if (!hasFocus) {
-					String name = ((EditText) v).getText().toString();
-					if (volunteers.size() > position) {
-						volunteers.set(position, name);
+					int quantity;
+					try {
+						quantity = Integer.parseInt(((EditText) v).getText()
+								.toString());
+					} catch (Exception e) {
+						quantity = 0;
+					}
+					if (q.getCalculations().size() > position) {
+						if (!q.updateCalculation(position, quantity, q
+								.getCalculations().get(position).getPounds())) {
+							notifyDataSetChanged();
+						}
 					}
 				}
 			}
 
 		});
 
+		vh.pounds.setOnFocusChangeListener(new OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if (!hasFocus) {
+					int pounds;
+					try {
+						pounds = Integer.parseInt(((EditText) v).getText()
+								.toString());
+					} catch (Exception e) {
+						pounds = 0;
+					}
+					if (q.getCalculations().size() > position) {
+						if (!q.updateCalculation(position, q.getCalculations()
+								.get(position).getQuantity(), pounds)) {
+							notifyDataSetChanged();
+						}
+					}
+				}
+			}
+		});
+
 		vh.delete.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				volunteers.remove(position);
-				notifyDataSetChanged();
+				if (q.removeCalculation(position)) {
+					notifyDataSetChanged();
+				} else {
+					AlertDialog.Builder builder = new AlertDialog.Builder(
+							context);
+					builder.setMessage("Unable to delete. Removing this calculation will make the quantity less than zero.");
+					builder.create().show();
+				}
 			}
 
 		});
@@ -72,8 +115,15 @@ public class CalcArrayAdapter extends ArrayAdapter<String> {
 		return convertView;
 	}
 
-	public void addVolunteer() {
-		volunteers.add("");
+	public void addRemainder() {
+		if (!q.isPickup()) {
+			q.addCalculation().remainder();
+			notifyDataSetChanged();
+		}
+	}
+
+	public void addCalc() {
+		q.addCalculation();
 		notifyDataSetChanged();
 	}
 }

@@ -7,6 +7,7 @@ import org.table2table.froapp.model.TripFactory;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -42,9 +43,12 @@ public class MainActivity extends ActionBarActivity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		//if (id == R.id.action_settings) {
-			return true;
-		//}
+		if (id == R.id.addSite) {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("This button will add another site.");
+			builder.create().show();
+		}
+		return true;
 		//return super.onOptionsItemSelected(item);
 	}
 }
