@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Food Rescue DB App</string>
+    <!-- activity_main -->
+    <string name="tripID">Trip ID</string>
+    <string name="load">Load Trip</string>
+    <string name="slogan">A Food Rescue Organization, the right thing to do.</string>
+    <string name="addSite">Add a site.</string>
+    
+    <!-- pre_departure -->
+    <string name="van">Van ID:</string>
+    <string name="done">Done</string>
+    <string name="mileage">Mileage:</string>
+    <string name="volunteer">Add Volunteer</string>
+    <string name="start">Start Trip</string>
+    <string name="number">number</string>
+    <!-- volunteer_popup -->
+    <string name="addVolunteer">Add New Volunteer</string>
+    <string name="nameVolunteer">Volunteer Name</string>
+    <string name="delete">Delete</string>
+    <string name="remove">Remove This Volunteer</string>
+    
+    <string name="nextPickup">Next Pickup</string>
+    <string name="nextDropoff">Next Dropoff</string>
+    <string name="returntext">Return</string>
+    <string name="resume">Resume Trip</string>
+    <string name="enter">Enter Quantities</string>
+    <!-- calc_row -->
+    <string name="quantity">Quantity</string>
+    <string name="times">X</string>
+    <string name="pounds">Pounds</string>
+    <string name="addRemainder">Add Remainder</string>
+    <string name="addRow">Add Row</string>
+    <!-- submit -->
+    <string name="verifySubmit">Verify and Submit</string>
+    
+    
+</resources>

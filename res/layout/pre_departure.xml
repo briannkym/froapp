@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/top"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:padding="16dp"
+    android:layout_marginTop="16dp"
+    android:orientation="vertical" >
+	
+
+	<View
+        android:id="@+id/centerShim"
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true">
+	</View>
+	
+	<ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:contentDescription="@string/slogan"
+        android:src="@drawable/t2t_back" 
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"/>
+	
+    <LinearLayout
+        android:clickable="true" 
+    	android:focusableInTouchMode="true"
+        android:id="@+id/left"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+        android:layout_toLeftOf="@id/centerShim"
+        android:layout_below="@id/imageView1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+	    android:layout_centerHorizontal="true"
+	    android:orientation="vertical" >
+	    
+	<TextView
+        android:id="@+id/textView1"
+    	android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/van"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+    	android:textSize="30sp"
+        android:gravity="center" 
+        />
+    <TextView
+        android:id="@+id/textView2"
+    	android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/mileage"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+    	android:textSize="30sp"
+    	android:gravity="center" />        
+    <Button
+        android:id="@+id/addVolunteer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        
+    	android:textSize="25sp"
+        android:text="@string/volunteer" />
+	</LinearLayout>
+    
+    
+    <LinearLayout
+        android:id="@+id/right"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+        android:layout_toRightOf="@id/centerShim"
+        android:layout_below="@id/imageView1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+	    android:layout_centerHorizontal="true"
+	    android:orientation="vertical" >
+    <EditText
+        android:inputType="number"
+        android:id="@+id/numberField"
+        android:hint="@string/number"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+    	android:textSize="30sp"
+    	android:imeOptions="actionDone" />
+    <EditText
+        android:inputType="number"
+        android:id="@+id/mileage"
+        android:hint="@string/number"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+    	android:textSize="30sp"
+    	android:imeOptions="actionDone" />
+	<Button
+        android:id="@+id/start"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+    	android:textSize="25sp"
+        android:text="@string/start" />
+    </LinearLayout>
+    
+</RelativeLayout>
