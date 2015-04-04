@@ -4,7 +4,6 @@ import org.table2table.froapp.R;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,10 +17,6 @@ public class IntroActivity extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		// Use this to get intent
-		Intent i = getIntent();
-		final ActionBar actionBar = this.getSupportActionBar();
 		setContentView(R.layout.intro_activity);
 		final EditText tripID = (EditText) findViewById(R.id.tripID);
 		final Button load = (Button) findViewById(R.id.load);
@@ -52,8 +47,7 @@ public class IntroActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		// getMenuInflater().inflate(R.menu.main, menu);
+		//Nothing needed here.
 		return true;
 	}
 

@@ -43,8 +43,14 @@ public class CalcControl {
 		done.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
+				/*A bit of a hack.
+				* Each Edittext saves its value upon losing focus, 
+				* So force all Edittexts to lose focus.
+				*/
+				removeFocus();
 				p.dismiss();
 				qaa.notifyDataSetChanged();
+				
 			}
 			
 		});
@@ -53,7 +59,8 @@ public class CalcControl {
 
 			@Override
 			public void onClick(View v) {
-				cAA.addCalc();
+				removeFocus();
+				cAA.addCalc();	
 			}
 			
 		});
@@ -62,6 +69,7 @@ public class CalcControl {
 
 			@Override
 			public void onClick(View v) {
+				removeFocus();
 				cAA.addRemainder();
 			}
 			
@@ -73,6 +81,15 @@ public class CalcControl {
 		this.parent = parent;
 	}
 	
+	/**
+	 * 
+	 */
+	public void removeFocus(){
+		if(calcList.getChildAt(0)!=null){
+			calcList.getChildAt(0).requestFocus();
+			calcList.getChildAt(0).clearFocus();
+		}
+	}
 
 	public void showPopup(){	
 		p.showAtLocation(parent, Gravity.CENTER, 0, 0);

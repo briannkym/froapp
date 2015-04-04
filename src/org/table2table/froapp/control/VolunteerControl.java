@@ -36,6 +36,7 @@ public class VolunteerControl{
 		done.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
+				removeFocus();
 				p.dismiss();
 			}
 			
@@ -45,12 +46,20 @@ public class VolunteerControl{
 
 			@Override
 			public void onClick(View v) {
+				removeFocus();
 				vAA.addVolunteer();
 			}
 			
 		});
 		this.parent = parent;
 		
+	}
+	
+	public void removeFocus(){
+		if(volunteerList.getChildAt(0)!=null){
+			volunteerList.getChildAt(0).requestFocus();
+			volunteerList.getChildAt(0).clearFocus();
+		}
 	}
 	
 	public void showPopup(){	

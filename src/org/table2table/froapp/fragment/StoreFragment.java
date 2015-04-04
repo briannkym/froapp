@@ -5,8 +5,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
+import org.table2table.froapp.MainActivity;
 import org.table2table.froapp.R;
 import org.table2table.froapp.model.SiteModel;
 
@@ -32,6 +35,14 @@ public class StoreFragment extends Fragment {
         storeName.setText(sm.getName());
         storeDescription.setText(sm.getDescription());
         //For use with google maps sm.getAddress();
+        
+        Button next = (Button) rootView.findViewById(R.id.next);
+		next.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				MainActivity.vp.setCurrentItem(MainActivity.vp.getCurrentItem() + 1);
+			}
+		});
         
         return rootView;
     }

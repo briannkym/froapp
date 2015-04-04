@@ -33,8 +33,9 @@ public class ParentPagerAdapter extends FragmentPagerAdapter {
 			int index = (arg0 - 1)/2;
 			
 			if(index >= tm.getNumSites()){
-				return new SubmitFragment(tm.getCategories());
+				return new SubmitFragment(tm);
 			}
+			
 
 			SiteModel site = tm.getSite(index);
 			if(arg0%2 == 0){

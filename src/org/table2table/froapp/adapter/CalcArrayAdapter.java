@@ -52,7 +52,7 @@ public class CalcArrayAdapter extends ArrayAdapter<CalculationModel> {
 		vh.quantity.setText(q.getCalculations().get(position).getQuantity()
 				+ "");
 		vh.pounds.setText(q.getCalculations().get(position).getPounds() + "");
-		
+
 		vh.quantity.setOnFocusChangeListener(new OnFocusChangeListener() {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
@@ -91,7 +91,7 @@ public class CalcArrayAdapter extends ArrayAdapter<CalculationModel> {
 								.get(position).getQuantity(), pounds)) {
 							notifyDataSetChanged();
 						}
-					}
+					} 
 				}
 			}
 		});
