@@ -3,9 +3,19 @@ package org.table2table.froapp.model;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * The class for building trips
+ * TODO Zach: put in code for generating trips here, should return a TripModel.
+ * 
+ * @author Brian Nakayama
+ *
+ */
 public class TripBuilder {
 
-	
+	/**
+	 * Generate a dummy trip for the prototype.
+	 * @return A TripModel
+	 */
 	public TripModel getExampleTrip() {
 		TripModel tm = new TripModel();
 		
