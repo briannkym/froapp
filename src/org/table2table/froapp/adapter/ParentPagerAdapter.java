@@ -81,5 +81,9 @@ public class ParentPagerAdapter extends FragmentPagerAdapter {
 		}
 		return title;
 	}
+	
+	public TripModel getTripModel() {
+		return tm;
+	}
 
 }

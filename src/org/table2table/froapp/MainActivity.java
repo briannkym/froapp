@@ -2,6 +2,7 @@ package org.table2table.froapp;
 
 import org.table2table.froapp.R;
 import org.table2table.froapp.adapter.ParentPagerAdapter;
+import org.table2table.froapp.model.OutputControl;
 import org.table2table.froapp.model.TripBuilder;
 
 import android.support.v4.view.ViewPager;
@@ -23,10 +24,13 @@ import android.view.MenuItem;
 public class MainActivity extends ActionBarActivity {
 
 	public static ViewPager vp;
+	public ParentPagerAdapter adapter;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
+		
 		// Specify that tabs should be displayed in the action bar.
 		Intent info = this.getIntent();
 		int tripID = info.getIntExtra("tripID", 0);//Do nothing for now.
@@ -34,7 +38,8 @@ public class MainActivity extends ActionBarActivity {
 		setTitle("Trip #"+tripID);
 		vp = (ViewPager)findViewById(R.id.pager);
 		TripBuilder tf = new TripBuilder();
-		vp.setAdapter(new ParentPagerAdapter(getSupportFragmentManager(), tf.getExampleTrip()));
+		adapter = new ParentPagerAdapter(getSupportFragmentManager(), tf.getExampleTrip());
+		vp.setAdapter(adapter);
 	}
 
 	@Override
@@ -42,6 +47,12 @@ public class MainActivity extends ActionBarActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		OutputControl.writeToFile(adapter.getTripModel(), this);
 	}
 
 	@Override

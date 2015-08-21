@@ -19,6 +19,13 @@
         android:textSize="30sp" />
     
     <TextView
+        android:id="@+id/storeAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="30sp" />
+    
+    <TextView
         android:id="@+id/storeDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
