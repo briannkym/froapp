@@ -44,7 +44,7 @@ public class SubmitFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				if (tm.verify()) {
-					OutputControl.writeToFile(tm, context);
+					OutputControl.writeToSQL(tm, context);
 				} else {
 					AlertDialog.Builder builder = new AlertDialog.Builder(
 							context);
