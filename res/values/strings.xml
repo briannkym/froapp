@@ -7,6 +7,7 @@
     <string name="load">Load Trip</string>
     <string name="slogan">A Food Rescue Organization, the right thing to do.</string>
     <string name="addSite">Add a site.</string>
+    <string name="invalid_trip_ID">That trip ID is invalid</string>
     
     <!-- pre_departure -->
     <string name="van">Van ID:</string>

@@ -3,6 +3,13 @@ package org.table2table.froapp.model;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Contains the model holding volunteer and other predeparture information.
+ * (Holds getters and setters)
+ * 
+ * @author Brian Nakayama
+ * 
+ */
 public class VolunteerModel {
 	private int mileage = 0;
 	private int vanID = 0;
@@ -11,6 +18,11 @@ public class VolunteerModel {
 	public VolunteerModel() {
 	}
 
+	/**
+	 * Get a list of volunteers
+	 * 
+	 * @return The list of volunteers.
+	 */
 	public List<String> getVolunteerList() {
 		return volunteerList;
 	}
