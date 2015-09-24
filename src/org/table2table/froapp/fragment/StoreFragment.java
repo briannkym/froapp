@@ -31,8 +31,10 @@ public class StoreFragment extends Fragment {
         sm.getName();
 
         TextView storeName = (TextView)rootView.findViewById(R.id.storeName);
+        TextView storeAddress = (TextView)rootView.findViewById(R.id.storeAddress);
         TextView storeDescription = (TextView)rootView.findViewById(R.id.storeDescription);
         storeName.setText(sm.getName());
+        storeAddress.setText(sm.getAddress());
         storeDescription.setText(sm.getDescription());
         //For use with google maps sm.getAddress();
         
