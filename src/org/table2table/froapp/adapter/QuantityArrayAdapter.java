@@ -3,7 +3,6 @@ package org.table2table.froapp.adapter;
 import java.util.LinkedList;
 import java.util.List;
 
-
 import org.table2table.froapp.R;
 import org.table2table.froapp.control.CalcControl;
 import org.table2table.froapp.model.QuantityModel;
@@ -28,14 +27,16 @@ public class QuantityArrayAdapter extends ArrayAdapter<QuantityModel> {
 		Button foodQuantity;
 	}
 
-	public QuantityArrayAdapter(Activity a, Context context, List<QuantityModel> quantities) {
+	public QuantityArrayAdapter(Activity a, Context context,
+			List<QuantityModel> quantities) {
 		super(context, R.layout.quantities_row, quantities);
 		this.context = context;
 		this.quantities = quantities;
 		calculations = new LinkedList<CalcControl>();
 
-		for(QuantityModel q : quantities){
-			calculations.add(new CalcControl(a, (ViewGroup)a.findViewById(R.id.pager) , q, this));
+		for (QuantityModel q : quantities) {
+			calculations.add(new CalcControl(a, (ViewGroup) a
+					.findViewById(R.id.pager), q, this));
 		}
 	}
 
@@ -49,27 +50,36 @@ public class QuantityArrayAdapter extends ArrayAdapter<QuantityModel> {
 
 			vh = new ViewHolder();
 			vh.foodType = (TextView) convertView.findViewById(R.id.foodType);
-			vh.foodQuantity = (Button) convertView.findViewById(R.id.foodQuantity);
+			vh.foodQuantity = (Button) convertView
+					.findViewById(R.id.foodQuantity);
 			convertView.setTag(vh);
 		} else {
 			vh = (ViewHolder) convertView.getTag();
 		}
 		vh.foodType.setText(quantities.get(position).getCategoryName());
-		if(!quantities.get(position).isPickup() && quantities.get(position).getSubtotal()== 0){
-			vh.foodQuantity.setText("");
-			vh.foodQuantity.setHint("+" + quantities.get(position).getCategory().getPounds());
+		if (quantities.get(position).isPickup()) {
+			vh.foodQuantity
+					.setText("" + quantities.get(position).getSubtotal());
 		} else {
-			vh.foodQuantity.setText("" + quantities.get(position).getSubtotal());
+			int total = quantities.get(position).getSubtotal() + quantities.get(position).getCategory().getPounds();
+			int subtotal = quantities.get(position).getSubtotal();
+			vh.foodQuantity.setHint("+"
+					+ total);
+			if (subtotal == 0) {
+				vh.foodQuantity.setText("");
+			} else {
+				vh.foodQuantity.setText("+" + total + "(" + subtotal + ")");
+			}
 		}
-		
-		vh.foodQuantity.setOnClickListener(new OnClickListener(){
+
+		vh.foodQuantity.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				calculations.get(position).showPopup();
 			}
-			
+
 		});
-		
+
 		return convertView;
 	}
 
