@@ -68,6 +68,10 @@ public class CalcArrayAdapter extends ArrayAdapter<CalculationModel> {
 						if (!q.updateCalculation(position, quantity, q
 								.getCalculations().get(position).getPounds())) {
 							notifyDataSetChanged();
+							AlertDialog.Builder builder = new AlertDialog.Builder(
+									context);
+							builder.setMessage("Unable to change quantity. Changing this quantity will result in more pounds being distributed than we've received.");
+							builder.create().show();
 						}
 					}
 				}
@@ -90,6 +94,10 @@ public class CalcArrayAdapter extends ArrayAdapter<CalculationModel> {
 						if (!q.updateCalculation(position, q.getCalculations()
 								.get(position).getQuantity(), pounds)) {
 							notifyDataSetChanged();
+							AlertDialog.Builder builder = new AlertDialog.Builder(
+									context);
+							builder.setMessage("Unable to change pounds. Changing these pounds will result in more pounds being distributed than we've received.");
+							builder.create().show();
 						}
 					} 
 				}
@@ -105,7 +113,7 @@ public class CalcArrayAdapter extends ArrayAdapter<CalculationModel> {
 				} else {
 					AlertDialog.Builder builder = new AlertDialog.Builder(
 							context);
-					builder.setMessage("Unable to delete. Removing this calculation will make the quantity less than zero.");
+					builder.setMessage("Unable to delete. Removing this calculation will result in more pounds being distributed than we've received.");
 					builder.create().show();
 				}
 			}
