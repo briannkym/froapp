@@ -71,6 +71,12 @@ public class OutputControl {
 		}
 	}
 	
+	public static TripModel readFromSQL(Context context) {
+		
+		
+		return null;
+	}
+	
 	private static class DatabaseWriter extends SQLiteOpenHelper {
 		public static final String DB_NAME = "output.sqlite";
 		public static final int VERSION = 1;

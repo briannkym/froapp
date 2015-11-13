@@ -38,6 +38,14 @@
         android:layout_weight="1"
     	android:textSize="30sp"
     	android:imeOptions="actionDone" />    
+    <EditText 
+        android:inputType="text"
+        android:id="@+id/ipAddress"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+    	android:textSize="30sp"
+    	android:imeOptions="actionDone" />"
 	<Button
         android:id="@+id/load"
         android:layout_width="match_parent"
@@ -45,6 +53,14 @@
         android:layout_weight="1"
     	android:textSize="25sp"
         android:text="@string/load" />
+	
+	<Button
+        android:id="@+id/reload"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+    	android:textSize="25sp"
+        android:text="@string/reload_trip" />
 	</LinearLayout>
     
 </RelativeLayout>

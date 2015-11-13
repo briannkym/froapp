@@ -82,7 +82,7 @@
 	    android:orientation="vertical" >
     <EditText
         android:inputType="number"
-        android:id="@+id/numberField"
+        android:id="@+id/vanID"
         android:hint="@string/number"
         android:layout_width="match_parent"
         android:layout_height="0dp"

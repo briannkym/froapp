@@ -1,5 +1,6 @@
 package org.table2table.froapp.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ import java.util.List;
  * @author Brian Nakayama
  * 
  */
-public class SiteModel {
+public class SiteModel implements Serializable {
 
 	private String name = "";
 	private String address = "";

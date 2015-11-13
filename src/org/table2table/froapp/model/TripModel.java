@@ -1,11 +1,12 @@
 package org.table2table.froapp.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-public class TripModel {
+public class TripModel implements Serializable {
 
 	/**
 	 * The acceptable error for submitting data to the database. Within this
@@ -20,6 +21,11 @@ public class TripModel {
 	public static final CategoryModel misc = CategoryModel.getInstance("Misc.");
 	private List<SiteModel> trip;
 	private List<CategoryModel> categories;
+	
+	private int van;
+	private int mileage;
+	
+	private int tripID = 0;
 
 	/**
 	 * Creates an empty TripModel
@@ -108,6 +114,33 @@ public class TripModel {
 	public int getNumSites() {
 		return trip.size();
 	}
+	
+	public void setVanMileage(int van, int mileage) {
+		van = van;
+		mileage = mileage;
+	}
+
+	public int getVanID() {
+		return van;
+	}
+	
+	public int getVanMileage() {
+		return mileage;
+	}
+
+	public List<SiteModel> getAllSites() {
+		List<SiteModel> output = new LinkedList<SiteModel>();
+		output.addAll(trip);
+		return output;
+	}
+	
+	public void setID (int ID) {
+		tripID = ID;
+	}
+	
+	public int getID() {
+		return tripID;
+	}
 
 	private void union(List<CategoryModel> categories) {
 		categorySet.addAll(categories);
@@ -140,5 +173,4 @@ public class TripModel {
 		categories.add(misc);
 		return categories;
 	}
-
 }

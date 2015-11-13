@@ -30,10 +30,8 @@ public class QuantityFragment extends Fragment {
 		// The last two arguments ensure LayoutParams are inflated
 		// properly.
 		View rootView = inflater.inflate(R.layout.quantities, container, false);
-		ListView quantityList = (ListView) rootView
-				.findViewById(R.id.quantityList);
-		final QuantityArrayAdapter qAA = new QuantityArrayAdapter(
-				this.getActivity(), this.getActivity(), quantities);
+		ListView quantityList = (ListView) rootView.findViewById(R.id.quantityList);
+		final QuantityArrayAdapter qAA = new QuantityArrayAdapter(this.getActivity(), this.getActivity(), quantities);
 		quantityList.setAdapter(qAA);
 
 		Button done = (Button) rootView.findViewById(R.id.done);

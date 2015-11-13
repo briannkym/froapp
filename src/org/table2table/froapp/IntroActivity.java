@@ -1,6 +1,7 @@
 package org.table2table.froapp;
 
-import org.table2table.froapp.R;
+import org.table2table.froapp.model.InternetTripExtractor;
+import org.table2table.froapp.model.TripExtractor;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +20,9 @@ public class IntroActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.intro_activity);
 		final EditText tripID = (EditText) findViewById(R.id.tripID);
+		final EditText IPAddress = (EditText) findViewById(R.id.ipAddress);
 		final Button load = (Button) findViewById(R.id.load);
+		final Button reload = (Button) findViewById(R.id.reload);
 		load.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -28,20 +31,42 @@ public class IntroActivity extends ActionBarActivity {
 				String s = tripID.getText().toString();
 				try {
 					int id = Integer.parseInt(s);
-					Intent nextScreen = new Intent(getApplicationContext(),
-							MainActivity.class);
-
-					// Sending data to another Activity
-					nextScreen.putExtra("tripID", id);
-
-					startActivity(nextScreen);
-					finish();
+					
+					String ip = IPAddress.getText().toString();
+					
+					TripExtractor extractor = new InternetTripExtractor(getApplicationContext(), ip);
+					
+					if (extractor.tripExits(id)) {
+						Intent nextScreen = new Intent(getApplicationContext(), MainActivity.class);
+						
+						nextScreen.putExtra("reload", false);
+						nextScreen.putExtra("tripID", id);
+						nextScreen.putExtra("IPAddress", ip.toCharArray());
+						
+						startActivity(nextScreen);
+						finish();
+					} else {
+						Toast.makeText(IntroActivity.this, R.string.trip_DNE, Toast.LENGTH_SHORT).show();
+					}
 				} catch (NumberFormatException e) {
 					Toast.makeText(IntroActivity.this, R.string.invalid_trip_ID, Toast.LENGTH_SHORT).show();
 				}
 			}
 
 		});
+		
+		reload.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent nextScreen = new Intent(getApplicationContext(), MainActivity.class);
+				
+				nextScreen.putExtra("reload", true);
+				
+				startActivity(nextScreen);
+				finish();
+			}
+		});
+		
 	}
 
 	@Override
