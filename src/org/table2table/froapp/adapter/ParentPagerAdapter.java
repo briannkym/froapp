@@ -27,7 +27,7 @@ public class ParentPagerAdapter extends FragmentPagerAdapter {
 		
 		switch (arg0) {
 		case 0:
-			fragment = new DepartureFragment();
+			fragment = new DepartureFragment(tm);
 			break;
 		default:
 			int index = (arg0 - 1)/2;

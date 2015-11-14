@@ -29,7 +29,7 @@ public class DepartureControl {
 	 */
 	public DepartureControl(View a) {
 		e1 = (EditText) a.findViewById(R.id.mileage);
-		e2 = (EditText) a.findViewById(R.id.numberField);
+		e2 = (EditText) a.findViewById(R.id.vanID);
 		b1 = (Button) a.findViewById(R.id.addVolunteer);
 		vc = new VolunteerControl((ViewGroup) a.findViewById(R.id.top),
 				volunteerList);
