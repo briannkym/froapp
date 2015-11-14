@@ -1,5 +1,6 @@
 package org.table2table.froapp.model;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -12,14 +13,18 @@ import java.util.Locale;
  * @author Brian Nakayama
  * @see QuantityModel
  */
-public class CategoryModel {
+public class CategoryModel implements Serializable {
 
 	private static int counter = 0;
 	private static List<CategoryModel> types = new LinkedList<CategoryModel>();
 	private String category = "";
-	private int id = -1;
 	private int pounds = 0;
-
+	
+	/* Mr Nakayama didn't seem to be using this variable, since it was the same
+	 * for all instances of this class. So I used it for the database. It now
+	 * has a getter. */
+	private final int id;
+	
 	/**
 	 * Creates a category with the given name, or if that category exists,
 	 * returns that category. (Factory)
@@ -84,5 +89,9 @@ public class CategoryModel {
 	 */
 	public String getCategory() {
 		return category;
+	}
+	
+	public int getID() {
+		return id;
 	}
 }

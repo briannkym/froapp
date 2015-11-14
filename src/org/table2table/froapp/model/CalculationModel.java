@@ -1,5 +1,7 @@
 package org.table2table.froapp.model;
 
+import java.io.Serializable;
+
 /**
  * The object for a single row of calculations for a category. Using
  * {@link #update(), #setPounds(int), #setQuantity(int)} the CalculationModel
@@ -9,7 +11,7 @@ package org.table2table.froapp.model;
  * @author Brian Nakayama
  * @see CategoryModel
  */
-public class CalculationModel {
+public class CalculationModel implements Serializable {
 
 	private int pounds = 0;
 	private int quantity = 1;

@@ -1,16 +1,18 @@
 package org.table2table.froapp;
 
-import org.table2table.froapp.R;
 import org.table2table.froapp.adapter.ParentPagerAdapter;
-import org.table2table.froapp.model.OutputControl;
-import org.table2table.froapp.model.TripBuilder;
+import org.table2table.froapp.model.DatabaseWriter;
+import org.table2table.froapp.model.InternetTripExtractor;
+import org.table2table.froapp.model.TripDoesNotExistException;
+import org.table2table.froapp.model.TripExtractor;
 
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,13 +26,41 @@ import android.view.MenuItem;
 public class MainActivity extends ActionBarActivity {
 
 	public static ViewPager vp;
-	public ParentPagerAdapter adapter;
+	public static ParentPagerAdapter adapter;
+	
+	private TripExtractor database = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Intent info = this.getIntent();
+		
+		try {
+			database = new InternetTripExtractor(getApplicationContext(), new String(info.getCharArrayExtra("IPAddress")));
+		} catch (Exception e) {
+			Log.d("Internet", "A problem occured attempting to instantiate the InternetTripExtractor");
+		}
+		Log.d("Internet", "Instantiation successful");
+		
 		super.onCreate(savedInstanceState);
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 		
+		setContentView(R.layout.parent);
+		setTitle("Trip #" + info.getIntExtra("tripID" , 0));
+		vp = (ViewPager)findViewById(R.id.pager);
+		
+		if (info.getBooleanExtra("reload", true)) {
+			adapter = new ParentPagerAdapter(getSupportFragmentManager(), database.getPreviousTrip());
+		} else {
+			try {
+				adapter = new ParentPagerAdapter(getSupportFragmentManager(), database.getTripFromNumber(info.getIntExtra("tripID", 0)));
+			} catch (TripDoesNotExistException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		vp.setAdapter(adapter);
+		
+		/*
 		// Specify that tabs should be displayed in the action bar.
 		Intent info = this.getIntent();
 		int tripID = info.getIntExtra("tripID", 0);//Do nothing for now.
@@ -39,7 +69,7 @@ public class MainActivity extends ActionBarActivity {
 		vp = (ViewPager)findViewById(R.id.pager);
 		TripBuilder tf = new TripBuilder();
 		adapter = new ParentPagerAdapter(getSupportFragmentManager(), tf.getExampleTrip());
-		vp.setAdapter(adapter);
+		vp.setAdapter(adapter);*/
 	}
 
 	@Override
@@ -48,11 +78,11 @@ public class MainActivity extends ActionBarActivity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
+
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		OutputControl.writeToFile(adapter.getTripModel(), this);
+		database.saveTrip(adapter.getTripModel());
 	}
 
 	@Override
@@ -67,7 +97,7 @@ public class MainActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	/*
 	 * Override the back button such that the app moves the screen instead of exitting. 
 	 */

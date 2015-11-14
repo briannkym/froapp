@@ -1,5 +1,6 @@
 package org.table2table.froapp.model;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import java.util.List;
  * @author Brian Nakayama
  * 
  */
-public class QuantityModel {
+public class QuantityModel implements Serializable {
 
 	private CategoryModel category;
 	// US lb.s

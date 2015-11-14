@@ -28,7 +28,7 @@ public class CalcControl {
 	private Button remainder;
 	private Button done;
 	private ListView calcList;
-	
+
 	public CalcControl(Activity a, ViewGroup parent, QuantityModel q, final QuantityArrayAdapter qaa){
 		LayoutInflater li = LayoutInflater.from(parent.getContext());
 		View v = li.inflate(R.layout.calc_popup, null);
@@ -50,11 +50,11 @@ public class CalcControl {
 				removeFocus();
 				p.dismiss();
 				qaa.notifyDataSetChanged();
-				
+
 			}
-			
+
 		});
-		
+
 		add.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -62,9 +62,9 @@ public class CalcControl {
 				removeFocus();
 				cAA.addCalc();	
 			}
-			
+
 		});
-		
+
 		remainder.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -72,15 +72,15 @@ public class CalcControl {
 				removeFocus();
 				cAA.addRemainder();
 			}
-			
+
 		});
-		
+
 		if(q.isPickup()){
 			remainder.setVisibility(View.GONE);
 		}
 		this.parent = parent;
 	}
-	
+
 	/**
 	 * 
 	 */

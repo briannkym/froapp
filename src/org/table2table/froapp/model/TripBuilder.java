@@ -8,6 +8,7 @@ import java.util.List;
  * TODO Zach: put in code for generating trips here, should return a TripModel.
  * 
  * @author Brian Nakayama
+ * @deprecated
  *
  */
 public class TripBuilder {
@@ -17,7 +18,7 @@ public class TripBuilder {
 	 * @return A TripModel
 	 */
 	public TripModel getExampleTrip() {
-		TripModel tm = new TripModel();
+		/*TripModel tm = new TripModel(0,0);
 		
 		List<CategoryModel> hyveeCategories = new LinkedList<CategoryModel>();
 		hyveeCategories.add(CategoryModel.getInstance("Bread"));
@@ -47,6 +48,7 @@ public class TripBuilder {
 				null);
 
 		return tm;
+		*/
+		return null;
 	}
-
 }
