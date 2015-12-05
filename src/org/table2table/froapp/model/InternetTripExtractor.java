@@ -21,6 +21,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 public class InternetTripExtractor implements TripExtractor {
+	
 	private volatile Map<Integer, List<String>> routes = null;
 	private volatile List<SiteEntry> sites = null;
 	
@@ -101,7 +102,7 @@ public class InternetTripExtractor implements TripExtractor {
 		@Override
 		protected Void doInBackground(Void... params) {
 			try {
-				Socket client = new Socket(hostName, org.table2table.froserver.Main.portNumber);
+				Socket client = new Socket(hostName, 2000);
 				
 				ObjectOutputStream output = new ObjectOutputStream(client.getOutputStream());
 				ObjectInputStream input = new ObjectInputStream(new BufferedInputStream(client.getInputStream()));

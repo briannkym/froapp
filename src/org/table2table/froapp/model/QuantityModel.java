@@ -11,6 +11,12 @@ import java.util.List;
  */
 public class QuantityModel implements Serializable {
 
+	/**
+	 * 1st version. Documented as of Dec. 3rd.
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
 	private CategoryModel category;
 	// US lb.s
 	private boolean receiving = true;

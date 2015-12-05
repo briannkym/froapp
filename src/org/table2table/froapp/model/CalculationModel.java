@@ -13,6 +13,11 @@ import java.io.Serializable;
  */
 public class CalculationModel implements Serializable {
 
+	/**
+	 * 1st version. Documented as of Dec. 3rd.
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private int pounds = 0;
 	private int quantity = 1;
 	private boolean receiving = true;

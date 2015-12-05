@@ -8,9 +8,9 @@
     <Button
         android:id="@+id/done"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="100dp"
         android:text="@string/done"
-        android:textSize="30sp" />
+        android:textSize="40sp" />
 
     <ListView
         android:id="@+id/quantityList"

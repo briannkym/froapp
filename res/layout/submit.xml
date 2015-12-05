@@ -8,9 +8,14 @@
     <Button
         android:id="@+id/submit"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="100dp"
         android:text="@string/verifySubmit"
-        android:textSize="30sp" />
-    
+        android:textSize="40sp" />
+    <TextView
+        android:id="@+id/tripInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="40sp" />
 
 </LinearLayout>

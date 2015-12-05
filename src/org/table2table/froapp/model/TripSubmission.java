@@ -1,12 +1,28 @@
 package org.table2table.froapp.model;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.sql.Date;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.table2table.froserver.model.MileageEntry;
+import org.table2table.froserver.model.PoundEntry;
 import org.table2table.froserver.model.SiteEntry;
+import org.table2table.froserver.service.AddTripCommand;
 import org.table2table.froserver.service.ClientMessage;
 import org.table2table.froserver.service.CloseCommand;
 import org.table2table.froserver.service.GetRoutesCommand;
 import org.table2table.froserver.service.GetSitesCommand;
 
+import android.os.AsyncTask;
+
 public class TripSubmission {
+	/*
 	private volatile String ip;
 	private volatile TripModel trip; 
 
@@ -59,5 +75,5 @@ public class TripSubmission {
 		}
 		
 	}
-
+*/
 }
