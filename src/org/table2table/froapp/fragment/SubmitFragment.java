@@ -4,6 +4,7 @@ import org.table2table.froapp.MainActivity;
 import org.table2table.froapp.R;
 import org.table2table.froapp.model.OutputControl;
 import org.table2table.froapp.model.TripModel;
+import org.table2table.froapp.model.TripSubmission;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -26,9 +27,15 @@ import android.widget.Button;
 public class SubmitFragment extends Fragment {
 
 	private TripModel tm;
+	
+	/*
+	 * This is the IP address of the server that the trip will be sent to
+	 */
+	private String ipAddress;
 
-	public SubmitFragment(){
-		tm = MainActivity.getTrip();
+	public SubmitFragment(TripModel tm, String IPAddress) {
+		this.tm = tm;
+		ipAddress = IPAddress;
 	}
 
 	@Override
@@ -44,7 +51,7 @@ public class SubmitFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				if (tm.verify()) {
-					OutputControl.writeToSQL(tm, context);
+					TripSubmission.submitTrip(tm, ipAddress);
 				} else {
 					AlertDialog.Builder builder = new AlertDialog.Builder(
 							context);

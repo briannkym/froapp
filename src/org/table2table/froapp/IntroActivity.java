@@ -1,5 +1,7 @@
 package org.table2table.froapp;
 
+import java.net.SocketException;
+
 import org.table2table.froapp.model.InternetTripExtractor;
 import org.table2table.froapp.model.TripExtractor;
 
@@ -49,7 +51,13 @@ public class IntroActivity extends ActionBarActivity {
 						Toast.makeText(IntroActivity.this, R.string.trip_DNE, Toast.LENGTH_SHORT).show();
 					}
 				} catch (NumberFormatException e) {
-					Toast.makeText(IntroActivity.this, R.string.invalid_trip_ID, Toast.LENGTH_SHORT).show();
+					//Toast.makeText(IntroActivity.this, R.string.invalid_trip_ID, Toast.LENGTH_SHORT).show();
+					/*
+					 * Perhaps TripDoesNotExistException should be renamed to TripNotFoundException, and should
+					 * simply be a catch-all (so to speak) exception with a message corresponding to where it
+					 * was thrown from and what the problem was.
+					 */
+					Toast.makeText(IntroActivity.this, e.getMessage() , Toast.LENGTH_SHORT).show();
 				}
 			}
 

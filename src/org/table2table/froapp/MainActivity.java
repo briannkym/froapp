@@ -31,9 +31,10 @@ public class MainActivity extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Intent info = this.getIntent();
+		String ipAddress = new String(info.getCharArrayExtra("IPAddress"));
 		
 		try {
-			database = new InternetTripExtractor(getApplicationContext(), new String(info.getCharArrayExtra("IPAddress")));
+			database = new InternetTripExtractor(getApplicationContext(), ipAddress);
 		} catch (Exception e) {
 			Log.d("Internet", "A problem occured attempting to instantiate the InternetTripExtractor");
 		}
@@ -46,17 +47,18 @@ public class MainActivity extends ActionBarActivity {
 		setTitle("Trip #" + info.getIntExtra("tripID" , 0));
 		vp = (ViewPager)findViewById(R.id.pager);
 		
+		ParentPagerAdapter adapter = null;
+		
 		if (info.getBooleanExtra("reload", true)) {
-			t = database.getPreviousTrip();
+			adapter = new ParentPagerAdapter(getSupportFragmentManager(), database.getPreviousTrip(), ipAddress);
 		} else {
 			try {
-				t = database.getTripFromNumber(info.getIntExtra("tripID", 0));
+				adapter = new ParentPagerAdapter(getSupportFragmentManager(), database.getTripFromNumber(info.getIntExtra("tripID", 0)), ipAddress);
 			} catch (TripDoesNotExistException e) {
 				e.printStackTrace();
 			}
 		}
 
-		ParentPagerAdapter adapter = new ParentPagerAdapter(getSupportFragmentManager());
 		vp.setAdapter(adapter);
 		
 		/*
