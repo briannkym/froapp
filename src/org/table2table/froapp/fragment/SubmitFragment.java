@@ -1,5 +1,6 @@
 package org.table2table.froapp.fragment;
 
+import org.table2table.froapp.MainActivity;
 import org.table2table.froapp.R;
 import org.table2table.froapp.model.OutputControl;
 import org.table2table.froapp.model.TripModel;
@@ -14,7 +15,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 /**
  * This page has only one button that acts to submit the user's information to

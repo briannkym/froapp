@@ -21,6 +21,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 public class InternetTripExtractor implements TripExtractor {
+	
 	private volatile Map<Integer, List<String>> routes = null;
 	private volatile List<SiteEntry> sites = null;
 
@@ -116,7 +117,7 @@ public class InternetTripExtractor implements TripExtractor {
 						client.getOutputStream());
 				ObjectInputStream input = new ObjectInputStream(
 						new BufferedInputStream(client.getInputStream()));
-	
+
 				output.writeObject(new GetRoutesCommand());
 	
 				routes = (Map<Integer, List<String>>) input.readObject();

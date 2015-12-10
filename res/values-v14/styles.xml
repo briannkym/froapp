@@ -1,12 +1,21 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
+    
+    <color name="tt_grey">#FFd3d3d3</color>
+	<color name="pitch_black">#FF000000</color>
     <!--
         Base application theme for API 14+. This theme completely replaces
         AppBaseTheme from BOTH res/values/styles.xml and
         res/values-v11/styles.xml on API 14+ devices.
     -->
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
-        <!-- API 14 theme customizations can go here. -->
+        <item name="actionBarStyle">@style/TTActionBar</item>
     </style>
-
+    
+    <style name="TTActionBar" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:background">#FFFFd3d3</item>
+        <item name="android:height">100dp</item>
+        <item name="android:textSize">40sp</item>
+    </style>
+    
 </resources>

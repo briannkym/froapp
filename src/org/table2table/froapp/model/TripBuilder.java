@@ -5,7 +5,6 @@ import java.util.List;
 
 /**
  * The class for building trips
- * TODO Zach: put in code for generating trips here, should return a TripModel.
  * 
  * @author Brian Nakayama
  * @deprecated

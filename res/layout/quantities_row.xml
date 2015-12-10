@@ -6,19 +6,19 @@
 
     <TextView
         android:textAppearance="?android:attr/textAppearanceLarge"
-    	android:textSize="30sp"
+    	android:textSize="40sp"
         android:id="@+id/foodType"
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_height="50dp"
+        android:layout_height="100dp"
         android:text="" />
 
     <Button
         android:id="@+id/foodQuantity"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="100dp"
         android:layout_weight="1"
         android:text=""
-        android:textSize="30sp" />
+        android:textSize="40sp" />
 
 </LinearLayout>

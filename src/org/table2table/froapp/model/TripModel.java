@@ -9,6 +9,12 @@ import java.util.Set;
 public class TripModel implements Serializable {
 
 	/**
+	 * The first serialized version of this class. 
+	 * Documented Dec. 3rd.
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The acceptable error for submitting data to the database. Within this
 	 * many pounds greater than 0, one can submit.
 	 */
@@ -115,29 +121,54 @@ public class TripModel implements Serializable {
 		return trip.size();
 	}
 	
+	/**
+	 * Set the van Mileage for this trip.
+	 * @param van
+	 * @param mileage
+	 */
 	public void setVanMileage(int van, int mileage) {
-		van = van;
-		mileage = mileage;
+		this.van = van;
+		this.mileage = mileage;
 	}
 
+	/**
+	 * Get the Van ID entered for this trip.
+	 * @return
+	 */
 	public int getVanID() {
 		return van;
 	}
 	
+	/**
+	 * Get the vanMileage entered for this trip.
+	 * @return
+	 */
 	public int getVanMileage() {
 		return mileage;
 	}
 
+	/**
+	 * Return all of the sites for this trip.
+	 * @return A list of SiteModels.
+	 */
 	public List<SiteModel> getAllSites() {
 		List<SiteModel> output = new LinkedList<SiteModel>();
 		output.addAll(trip);
 		return output;
 	}
 	
+	/**
+	 * Set the ID for this trip as defined by the database
+	 * @param ID The primary key for this trip.
+	 */
 	public void setID (int ID) {
-		tripID = ID;
+		this.tripID = ID;
 	}
 	
+	/**
+	 * Get the ID representing the trip.
+	 * @return
+	 */
 	public int getID() {
 		return tripID;
 	}
@@ -146,6 +177,7 @@ public class TripModel implements Serializable {
 		categorySet.addAll(categories);
 	}
 
+	
 	private List<QuantityModel> getReceiveList(List<CategoryModel> categories) {
 		List<QuantityModel> qm = new LinkedList<QuantityModel>();
 		for (CategoryModel c : categories) {
@@ -155,6 +187,7 @@ public class TripModel implements Serializable {
 		return qm;
 	}
 
+	
 	private List<QuantityModel> getDonationList() {
 		List<QuantityModel> qm = new LinkedList<QuantityModel>();
 		for (CategoryModel c : categorySet) {
@@ -163,7 +196,8 @@ public class TripModel implements Serializable {
 		qm.add(new QuantityModel(misc, false));
 		return qm;
 	}
-
+	
+	
 	private List<CategoryModel> getCategoryList() {
 		List<QuantityModel> donations = getDonationList();
 		List<CategoryModel> categories = new LinkedList<CategoryModel>();

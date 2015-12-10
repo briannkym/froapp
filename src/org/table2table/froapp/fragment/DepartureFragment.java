@@ -17,13 +17,15 @@ import android.widget.EditText;
 public class DepartureFragment extends Fragment {
 	private TripModel tm = null;
 	
-	public DepartureFragment (TripModel trip) {
-		tm = trip;
+	public DepartureFragment(){
+		tm = MainActivity.getTrip();
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		
+		
 		// The last two arguments ensure LayoutParams are inflated
 		// properly.
 		View rootView = inflater.inflate(R.layout.pre_departure, container,
@@ -48,7 +50,7 @@ public class DepartureFragment extends Fragment {
 					//For now, I'll just assume that it is correct
 					tm.setVanMileage(Integer.parseInt(vanID.getText().toString()), Integer.parseInt(mileage.getText().toString()));
 					
-					MainActivity.vp.setCurrentItem(MainActivity.vp
+					MainActivity.getViewPager().setCurrentItem(MainActivity.getViewPager()
 							.getCurrentItem() + 1);
 				} else {
 

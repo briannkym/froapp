@@ -15,6 +15,11 @@ import java.util.Locale;
  */
 public class CategoryModel implements Serializable {
 
+	/**
+	 * 1st version. Documented as of Dec. 3rd.
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private static int counter = 0;
 	private static List<CategoryModel> types = new LinkedList<CategoryModel>();
 	private String category = "";
