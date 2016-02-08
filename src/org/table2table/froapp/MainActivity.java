@@ -1,14 +1,13 @@
 package org.table2table.froapp;
 
 import org.table2table.froapp.adapter.ParentPagerAdapter;
-import org.table2table.froapp.model.DatabaseWriter;
 import org.table2table.froapp.model.InternetTripExtractor;
 import org.table2table.froapp.model.TripDoesNotExistException;
 import org.table2table.froapp.model.TripExtractor;
+import org.table2table.froapp.model.TripModel;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
@@ -25,39 +24,41 @@ import android.view.MenuItem;
  */
 public class MainActivity extends ActionBarActivity {
 
-	public static ViewPager vp;
-	public static ParentPagerAdapter adapter;
-	
+	private static ViewPager vp;
+	private static TripModel t;
 	private TripExtractor database = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Intent info = this.getIntent();
+		String ipAddress = new String(info.getCharArrayExtra("IPAddress"));
 		
 		try {
-			database = new InternetTripExtractor(getApplicationContext(), new String(info.getCharArrayExtra("IPAddress")));
+			database = new InternetTripExtractor(getApplicationContext(), ipAddress);
 		} catch (Exception e) {
 			Log.d("Internet", "A problem occured attempting to instantiate the InternetTripExtractor");
 		}
 		Log.d("Internet", "Instantiation successful");
 		
 		super.onCreate(savedInstanceState);
-		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
+		//this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 		
 		setContentView(R.layout.parent);
 		setTitle("Trip #" + info.getIntExtra("tripID" , 0));
 		vp = (ViewPager)findViewById(R.id.pager);
 		
+		ParentPagerAdapter adapter = null;
+		
 		if (info.getBooleanExtra("reload", true)) {
-			adapter = new ParentPagerAdapter(getSupportFragmentManager(), database.getPreviousTrip());
+			adapter = new ParentPagerAdapter(getSupportFragmentManager(), database.getPreviousTrip(), ipAddress);
 		} else {
 			try {
-				adapter = new ParentPagerAdapter(getSupportFragmentManager(), database.getTripFromNumber(info.getIntExtra("tripID", 0)));
+				adapter = new ParentPagerAdapter(getSupportFragmentManager(), database.getTripFromNumber(info.getIntExtra("tripID", 0)), ipAddress);
 			} catch (TripDoesNotExistException e) {
 				e.printStackTrace();
 			}
 		}
-		
+
 		vp.setAdapter(adapter);
 		
 		/*
@@ -78,11 +79,11 @@ public class MainActivity extends ActionBarActivity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
+	
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		database.saveTrip(adapter.getTripModel());
+		database.saveTrip(t);
 	}
 
 	@Override
@@ -97,6 +98,8 @@ public class MainActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	
 
 	/*
 	 * Override the back button such that the app moves the screen instead of exitting. 
@@ -111,5 +114,13 @@ public class MainActivity extends ActionBarActivity {
 	        return true;
 	    }
 	    return super.onKeyDown(keyCode, event);
+	}
+	
+	public static TripModel getTrip(){
+		return t;
+	}
+	
+	public static ViewPager getViewPager(){
+		return vp;
 	}
 }

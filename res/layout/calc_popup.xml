@@ -5,31 +5,47 @@
     android:orientation="vertical" 
     android:background="#FFFFFF">
 
+<!--    <LinearLayout
+  		android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">-->
     <Button
         android:id="@+id/doneAdding"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="100dp"
+        android:layout_weight="0"
         android:text="@string/done"
-        android:textSize="25sp" />
-
-    <ListView
-        android:id="@+id/calcList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:descendantFocusability="afterDescendants"
-        android:scrollingCache="true"
-        android:smoothScrollbar="true" >
-    </ListView>
-	
+        android:textSize="40sp" /> 
+<!--     </LinearLayout>-->
+<!--  	<LinearLayout
+  		android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"> -->
+	    <ListView
+	        android:id="@+id/calcList"
+	        android:layout_width="match_parent"
+	        android:layout_height="0dp"
+	        android:layout_weight="1"
+	        android:descendantFocusability="afterDescendants">
+	    </ListView>
+<!--	</LinearLayout>-->
+<!-- 	<LinearLayout
+  		android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">-->
 	<Button android:id="@+id/addRow"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-    	android:textSize="25sp"
+        android:layout_height="100dp"
+    	android:textSize="40sp"
+    	android:layout_weight="0"
         android:text="@string/addRow"/>
 	<Button android:id="@+id/addRemainder"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-    	android:textSize="25sp"
+        android:layout_height="100dp"
+        android:layout_weight="0"
+    	android:textSize="40sp"
         android:text="@string/addRemainder"/>
-
+<!-- 	</LinearLayout>-->
+	
 </LinearLayout>

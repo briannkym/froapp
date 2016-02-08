@@ -2,6 +2,11 @@ package org.table2table.froapp.model;
 
 public class TripDoesNotExistException extends Exception {
 	
+	/**
+	 * 1st version. Documented as of Dec. 3rd.
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	int invalidTrip = 0;
 	
 	public TripDoesNotExistException() {

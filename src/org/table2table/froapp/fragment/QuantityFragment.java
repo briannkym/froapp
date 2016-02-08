@@ -18,15 +18,23 @@ import android.widget.ListView;
 
 public class QuantityFragment extends Fragment {
 
-	private List<QuantityModel> quantities;
-
-	public QuantityFragment(List<QuantityModel> quantities) {
-		this.quantities = quantities;
+	//private List<QuantityModel> quantities;
+	private int index = -1;
+	public QuantityFragment(){
+		 
+	}
+	
+	public QuantityFragment(int index) {
+		this.index = index;
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		if(index == -1){
+			index = savedInstanceState.getInt("index");
+		}
+		List<QuantityModel> quantities = MainActivity.getTrip().getSite(index).getQuantities();
 		// The last two arguments ensure LayoutParams are inflated
 		// properly.
 		View rootView = inflater.inflate(R.layout.quantities, container, false);
@@ -38,11 +46,16 @@ public class QuantityFragment extends Fragment {
 		done.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				MainActivity.vp.setCurrentItem(MainActivity.vp.getCurrentItem() + 1);
+				MainActivity.getViewPager().setCurrentItem(MainActivity.getViewPager().getCurrentItem() + 1);
 			}
 		});
 
 		return rootView;
+	}
+	
+	@Override
+	public void onSaveInstanceState (Bundle outState) {
+		outState.putInt("index", index);
 	}
 
 }

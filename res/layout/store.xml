@@ -7,29 +7,29 @@
     <Button
         android:id="@+id/next"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="100dp"
         android:text="@string/enter"
-        android:textSize="30sp" />
+        android:textSize="40sp" />
     
     <TextView
         android:id="@+id/storeName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
-        android:textSize="30sp" />
+        android:textSize="40sp" />
     
     <TextView
         android:id="@+id/storeAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
-        android:textSize="30sp" />
+        android:textSize="40sp" />
     
     <TextView
         android:id="@+id/storeDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
-        android:textSize="30sp" />
+        android:textSize="40sp" />
     
 </LinearLayout>
