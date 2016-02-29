@@ -1,42 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
- <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="110dp" 
     android:padding="5dp">
+         <!-- android:layout_alignParentLeft="true" -->
+         
+        <!-- android:layout_toLeftOf="@+id/times" -->
     <EditText android:inputType="number"
         android:id="@+id/quantity"
         android:hint="@string/quantity"
         android:layout_width="0dp"
-        android:layout_alignParentLeft="true"
+        android:layout_weight=".35"
         android:layout_height="100dp"
-        android:layout_toLeftOf="@+id/times"
         android:textSize="40sp"
         android:imeOptions="actionDone" />
+    
+        <!-- android:layout_toLeftOf="@+id/pounds" -->
     <TextView
-        android:id="@id/times"
+        android:id="@+id/times"
         android:layout_width="0dp"
         android:text="@string/times"
+        android:layout_weight=".1"
         android:layout_height="100dp"
     	android:gravity="center"
-        android:layout_toLeftOf="@+id/pounds"
         android:textSize="40sp" />
     
+        <!-- android:layout_toLeftOf="@+id/delete" -->
     <EditText android:inputType="number"
-        android:id="@id/pounds"
+        android:id="@+id/pounds"
         android:hint="@string/pounds"
         android:layout_width="0dp"
+        android:layout_weight=".35"
         android:layout_height="100dp"
-        android:layout_toLeftOf="@+id/delete"
         android:textSize="40sp"
         android:imeOptions="actionDone" />
-    <ImageButton android:id="@id/delete"
+    
+    
+        <!-- android:layout_alignParentRight="true" -->
+    <ImageButton android:id="@+id/delete"
         android:contentDescription="@string/delete"
-        android:layout_alignParentRight="true"
         android:layout_width="0dp"
+        android:layout_weight=".2"
         android:layout_height="100dp"
         android:src="@drawable/trash_icon" 
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
         android:background="#FFFFFF"/>
 
-</RelativeLayout>
+</LinearLayout>
