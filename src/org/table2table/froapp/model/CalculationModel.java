@@ -18,8 +18,8 @@ public class CalculationModel implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private int pounds = 0;
-	private int quantity = 1;
+	private int pounds = 1;
+	private int quantity = 0;
 	private boolean receiving = true;
 	private int prevPounds = 0;
 	private int prevQuantity = 1;

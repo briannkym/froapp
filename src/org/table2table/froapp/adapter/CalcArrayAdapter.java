@@ -65,8 +65,7 @@ public class CalcArrayAdapter extends ArrayAdapter<CalculationModel> {
 						quantity = 0;
 					}
 					if (q.getCalculations().size() > position) {
-						if (!q.updateCalculation(position, quantity, q
-								.getCalculations().get(position).getPounds())) {
+						if (!q.updateCalculation(position, quantity, q.getCalculations().get(position).getPounds())) {
 							notifyDataSetChanged();
 							AlertDialog.Builder builder = new AlertDialog.Builder(
 									context);
@@ -91,15 +90,14 @@ public class CalcArrayAdapter extends ArrayAdapter<CalculationModel> {
 						pounds = 0;
 					}
 					if (q.getCalculations().size() > position) {
-						if (!q.updateCalculation(position, q.getCalculations()
-								.get(position).getQuantity(), pounds)) {
+						if (!q.updateCalculation(position, q.getCalculations().get(position).getQuantity(), pounds)) {
 							notifyDataSetChanged();
 							AlertDialog.Builder builder = new AlertDialog.Builder(
 									context);
 							builder.setMessage("Unable to change pounds. Changing these pounds will result in more pounds being distributed than we've received.");
 							builder.create().show();
 						}
-					} 
+					}
 				}
 			}
 		});

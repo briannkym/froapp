@@ -38,7 +38,6 @@ public class MainActivity extends ActionBarActivity {
 		} catch (Exception e) {
 			Log.d("Internet", "A problem occured attempting to instantiate the InternetTripExtractor");
 		}
-		Log.d("Internet", "Instantiation successful");
 		
 		super.onCreate(savedInstanceState);
 		//this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
@@ -47,19 +46,17 @@ public class MainActivity extends ActionBarActivity {
 		setTitle("Trip #" + info.getIntExtra("tripID" , 0));
 		vp = (ViewPager)findViewById(R.id.pager);
 		
-		ParentPagerAdapter adapter = null;
-		
 		if (info.getBooleanExtra("reload", true)) {
-			adapter = new ParentPagerAdapter(getSupportFragmentManager(), database.getPreviousTrip(), ipAddress);
+			t = database.getPreviousTrip();
 		} else {
 			try {
-				adapter = new ParentPagerAdapter(getSupportFragmentManager(), database.getTripFromNumber(info.getIntExtra("tripID", 0)), ipAddress);
+				t = database.getTripFromNumber(info.getIntExtra("tripID", 0));
 			} catch (TripDoesNotExistException e) {
 				e.printStackTrace();
 			}
 		}
 
-		vp.setAdapter(adapter);
+		vp.setAdapter(new ParentPagerAdapter(getSupportFragmentManager(), t, ipAddress));
 		
 		/*
 		// Specify that tabs should be displayed in the action bar.

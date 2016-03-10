@@ -58,7 +58,7 @@ public class ParentPagerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public int getCount() {
-		return MainActivity.getTrip().getNumSites()*2 + 2;
+		return tm.getNumSites()*2 + 2;
 	}
 
 	@Override

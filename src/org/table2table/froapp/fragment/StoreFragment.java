@@ -16,10 +16,10 @@ import org.table2table.froapp.model.SiteModel;
 public class StoreFragment extends Fragment {
 
 	private int index = -1;
-	
+
 	public StoreFragment(){
 	}
-	
+
 	public StoreFragment(int index) {
 		this.index = index;
 	}
@@ -27,12 +27,12 @@ public class StoreFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		
+
 		if(index == -1){
 			index = savedInstanceState.getInt("index");
 		}
 		SiteModel sm = MainActivity.getTrip().getSite(index);
-		
+
 		// The last two arguments ensure LayoutParams are inflated
 		// properly.
 		View rootView = inflater.inflate(R.layout.store, container, false);
@@ -58,7 +58,7 @@ public class StoreFragment extends Fragment {
 
 		return rootView;
 	}
-	
+
 	@Override
 	public void onSaveInstanceState (Bundle outState) {
 		outState.putInt("index", index);
