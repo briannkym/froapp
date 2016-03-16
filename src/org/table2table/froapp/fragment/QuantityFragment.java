@@ -20,10 +20,8 @@ public class QuantityFragment extends Fragment {
 
 	//private List<QuantityModel> quantities;
 	private int index = -1;
-	public QuantityFragment(){
-		 
-	}
-	
+	public QuantityFragment() {}
+
 	public QuantityFragment(int index) {
 		this.index = index;
 	}

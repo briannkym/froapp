@@ -50,7 +50,6 @@ public class CalcControl {
 				removeFocus();
 				p.dismiss();
 				qaa.notifyDataSetChanged();
-
 			}
 
 		});
